@@ -55,6 +55,14 @@ export const identify = async (req: Request, res: Response) => {
                 },
             );
         }
+    } else if (
+        (emailContact && !user.phoneNumber) || 
+        (phoneContact && !user.email)
+    ) {
+        // no new information, so no need to create contact
+        primaryContactWWWW = emailContact ? 
+            (emailContact.linkPrecedence == 'primary' ? emailContact : emailContact.primary_contact!) :
+            (phoneContact?.linkPrecedence == 'primary' ? phoneContact : phoneContact?.primary_contact!)
     } else {
         // create new contact
         if (emailContact || phoneContact) {
