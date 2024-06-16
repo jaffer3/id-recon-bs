@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 import { identify } from './controller';
+import db from './db';
 
 dotenv.config();
 
@@ -18,6 +19,14 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.post('/identify', identify);
+
+const start = async(): Promise<void> => {
+  await db.sync(
+    // { alter: true }
+  );
+}
+
+void start();
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

@@ -9,3 +9,5 @@ export interface ConsolidatedContact {
     phoneNumbers: string[],
     secondaryContactIds: number[],
 }
+
+export type precedence = 'primary' | 'secondary'
