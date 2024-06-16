@@ -21,6 +21,13 @@ class Contact extends Model<
     declare secondary_contacts?: NonAttribute<Contact[]>;
     declare primary_contact?: NonAttribute<Contact>;
 
+    get getPrimaryId(): NonAttribute<number> {
+        if (this.linkPrecedence == 'secondary') {
+            return this.linkedId;
+        }
+        return this.id;
+    }
+
     declare static associations: {
         secondary_contacts: Association<Contact, Contact>;
         primary_contact: Association<Contact, Contact>;

@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 import { identify } from './controller';
-import db from './db';
+import Contact from "./model";
 
 dotenv.config();
 
@@ -21,7 +21,7 @@ app.get('/', (req: Request, res: Response) => {
 app.post('/identify', identify);
 
 const start = async(): Promise<void> => {
-  await db.sync(
+  await Contact.sync(
     // { alter: true }
   );
 }

@@ -11,3 +11,5 @@ export interface ConsolidatedContact {
 }
 
 export type precedence = 'primary' | 'secondary'
+
+export type emailOrPhone = 'email' | 'phoneNumber'
